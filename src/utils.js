@@ -3,7 +3,7 @@ export const playAudio = (isPlaying, audioRef) => {
     const playPromise = audioRef.current.play();
     //console.log("print from promise thing " + playPromise);
     if (playPromise !== undefined) {
-      playPromise.then((audio) => {
+      playPromise.then(() => {
         audioRef.current.play();
       });
     }
