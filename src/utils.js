@@ -1,6 +1,4 @@
 export const playAudio = (isPlaying, audioRef) => {
-  console.log(audioRef);
-  console.log(isPlaying);
   if (isPlaying) {
     const playPromise = audioRef.current.play();
     //console.log("print from promise thing " + playPromise);
