@@ -51,11 +51,8 @@ const Player = ({
   //it uses onTimeUpdate Event which fires auto when the song plays
 
   //getTime will format the time
-  const getTime = (time) => {
-    return (
-      Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
-    );
-  };
+  const getTime = (time) => time ? Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2) : '0:00'
+  
   //it will handle the drag of the input slider
   const dragHandler = (e) => {
     audioRef.current.currentTime = e.target.value;
