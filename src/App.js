@@ -12,13 +12,19 @@ import data from "./data";
 
 function App() {
   //state
+  //1-audioRef state- holds the ref to the current audio file
   const audioRef = useRef(null);
+  //2-songs state : state that stores all the songs
   const [songs, setSongs] = useState(data());
+  //3- currentSong state : state that hooks the currentSong
   const [currentSong, setCurrentSong] = useState(songs[0]);
+  //4- isPlaying state : state that stores info about the song playing status
   const [isPlaying, setIsPlaying] = useState(false);
+  //5-songInfo state  : holds metaData about the currentSong thats playing
   const [songInfo, setSongInfo] = useState({
     currentTime: 0,
     duration: 0,
+    animationPercentage: 0,
   });
 
   // libraryStatus is the library toggle status
@@ -27,7 +33,20 @@ function App() {
   const timeUpdateHandler = (e) => {
     const current = e.target.currentTime;
     const duration = e.target.duration;
-    setSongInfo({ ...songInfo, currentTime: current, duration });
+    //calculating songPercentage
+    const roundedCurrent = Math.round(current);
+    const roundedDuration = Math.round(duration);
+
+    const animationPercentage = Math.round(
+      (roundedCurrent / roundedDuration) * 100
+    );
+
+    setSongInfo({
+      ...songInfo,
+      currentTime: current,
+      duration,
+      animationPercentage,
+    });
   };
   return (
     <div className="App">
